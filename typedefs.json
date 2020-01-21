@@ -9,10 +9,10 @@
   },
   "_email.Mail": {
     "link": "https://github.com/artdecocode/email#type-mail",
-    "description": "The mail object."
+    "description": "The email object with information about the message."
   },
   "_email.Dkim": {
     "link": "https://github.com/artdecocode/email#type-dkim",
-    "description": "DKIM information"
+    "description": "DKIM information for signing messages. If you use a relay, this will not be required."
   }
 }

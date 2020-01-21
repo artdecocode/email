@@ -1,25 +1,10 @@
 <types namespace="_email">
-  <record name="Config" desc="Options for the program.">
-    <prop type="!_email.Dkim" name="dkim" opt>
-      DKIM configuration for signing emails.
-    </prop>
-    <prop boolean name="silent" default="false">
-      Disable printing to console.
-    </prop>
-    <prop string name="smtpHost" opt>
-      SMTP host to connect to (e.g., an email relay service).
-    </prop>
-    <prop string name="smtpHost" opt>
-      The port to connect to SMTP server.
-    </prop>
-  </record>
-
-  <record name="Mail" desc="The mail object.">
+  <record name="Mail" desc="The email object with information about the message.">
     <prop string name="from">
-      The FROM field.
+      The FROM field, e.g., `Hello World <hello@world.com>`.
     </prop>
     <prop string name="to">
-      The TO field.
+      The TO field, e.g., `Foo Bar <foo@bar.co>`.
     </prop>
     <prop type="string|!Array<string>" name="cc" opt>
       Carbon copy the message to these recipients.
@@ -38,14 +23,29 @@
     </prop>
   </record>
 
-  <record name="Dkim" desc="DKIM information">
+  <record name="Config" desc="Options for the program.">
+    <prop type="!_email.Dkim" name="dkim" opt>
+      DKIM configuration for signing emails.
+    </prop>
+    <prop boolean name="silent" default="false">
+      Disable printing to console.
+    </prop>
+    <prop string name="smtpHost". opt>
+      SMTP host to connect to (e.g., an email relay service).
+    </prop>
+    <prop string name="smtpPort" opt>
+      The port to connect to SMTP server.
+    </prop>
+  </record>
+
+  <record name="Dkim" desc="DKIM information for signing messages. If you use a relay, this will not be required.">
     <prop string name="privateKey">
       The private key.
     </prop>
     <prop string name="keySelector" default="dkim">
       The selector.
     </prop>
-    <prop string name="domain">
+    <prop string name="domain" opt>
       The domain. This will be deducted from your email host from the `mail.to` field.
     </prop>
   </record>

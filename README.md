@@ -13,8 +13,8 @@ yarn add @artdeco/email
 - [Table Of Contents](#table-of-contents)
 - [API](#api)
 - [`async email(mail: !Mail, data: { html: string, text: string }, config: !Config): void`](#async-emailmail-maildata--html-string-text-string-config-config-void)
-  * [`Config`](#type-config)
   * [`Mail`](#type-mail)
+  * [`Config`](#type-config)
   * [`Dkim`](#type-dkim)
 - [Copyright & License](#copyright--license)
 
@@ -38,41 +38,43 @@ import email from '@artdeco/email'
 Send e-mails by direct connection to recipient's SMTP server.
 You will most probably want to use a relay SMTP server, as most cloud server providers (Azure, Alibaba) block port 25 for direct connections.
 
- - <kbd><strong>mail*</strong></kbd> <em><code><a href="#type-mail" title="The mail object.">!Mail</a></code></em>: The mail to send.
+ - <kbd><strong>mail*</strong></kbd> <em><code><a href="#type-mail" title="The email object with information about the message.">!Mail</a></code></em>: The mail to send.
  - <kbd><strong>data*</strong></kbd> <em>`{ html: string, text: string }`</em>: The data.
  - <kbd><strong>config*</strong></kbd> <em><code><a href="#type-config" title="Options for the program.">!Config</a></code></em>: The config.
 
-__<a name="type-config">`Config`</a>__: Options for the program.
-
-
-|   Name   |                               Type                               |                       Description                       | Default |
-| -------- | ---------------------------------------------------------------- | ------------------------------------------------------- | ------- |
-| dkim     | <em><a href="#type-dkim" title="DKIM information">!Dkim</a></em> | DKIM configuration for signing emails.                  | -       |
-| silent   | <em>boolean</em>                                                 | Disable printing to console.                            | `false` |
-| smtpHost | <em>string</em>                                                  | SMTP host to connect to (e.g., an email relay service). | -       |
-| smtpHost | <em>string</em>                                                  | The port to connect to SMTP server.                     | -       |
-
-
-__<a name="type-mail">`Mail`</a>__: The mail object.
+__<a name="type-mail">`Mail`</a>__: The email object with information about the message.
 
 
 |   Name    |                   Type                    |                        Description                         |
 | --------- | ----------------------------------------- | ---------------------------------------------------------- |
-| __from*__ | <em>string</em>                           | The FROM field.                                            |
-| __to*__   | <em>string</em>                           | The TO field.                                              |
+| __from*__ | <em>string</em>                           | The FROM field, e.g., `Hello World <hello@world.com>`.     |
+| __to*__   | <em>string</em>                           | The TO field, e.g., `Foo Bar <foo@bar.co>`.                |
 | cc        | <em>(string \| !Array&lt;string&gt;)</em> | Carbon copy the message to these recipients.               |
 | bcc       | <em>string</em>                           | Blind carbon copy (without revealing) to these recipients. |
 | subject   | <em>string</em>                           | The email subject.                                         |
 
 
-__<a name="type-dkim">`Dkim`</a>__: DKIM information
+__<a name="type-config">`Config`</a>__: Options for the program.
+
+
+|   Name   |                                                                 Type                                                                  |                       Description                       | Default |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- | ------- |
+| dkim     | <em><a href="#type-dkim" title="DKIM information for signing messages. If you use a relay, this will not be required.">!Dkim</a></em> | DKIM configuration for signing emails.                  | -       |
+| silent   | <em>boolean</em>                                                                                                                      | Disable printing to console.                            | `false` |
+| smtpHost | <em>string</em>                                                                                                                       | SMTP host to connect to (e.g., an email relay service). | -       |
+| smtpPort | <em>string</em>                                                                                                                       | The port to connect to SMTP server.                     | -       |
+
+
+__<a name="type-dkim">`Dkim`</a>__: DKIM information for signing messages. If you use a relay, this will not be required.
 
 
 |      Name       |      Type       |                                   Description                                    | Default |
 | --------------- | --------------- | -------------------------------------------------------------------------------- | ------- |
 | __privateKey*__ | <em>string</em> | The private key.                                                                 | -       |
 | keySelector     | <em>string</em> | The selector.                                                                    | `dkim`  |
-| __domain*__     | <em>string</em> | The domain. This will be deducted from your email host from the `mail.to` field. | -       |
+| domain          | <em>string</em> | The domain. This will be deducted from your email host from the `mail.to` field. | -       |
+
+When `html` and `text` are set, the `multipart/alternative` MIME type is set on the message that contains both representations. If only text is set, it will be sent without a MIME type. There's no way to currently add attachments.
 
 ```js
 import email from '@artdeco/email'
@@ -95,11 +97,10 @@ export default async () => {
 }
 ```
 ```
-[+] SMTP2GO_USER [+] SMTP2GO_PASSWORD 
 MX connection created:  mail.smtp2go.com
 recv protonmail.com > 220 mail.smtp2go.com ESMTP Exim 4.92-S2G Tue, 21 Jan 2020 21:03:56 +0000
 send protonmail.com > EHLO akashic.page
-recv protonmail.com > 
+recv protonmail.com >
 recv protonmail.com > 250-mail.smtp2go.com Hello akashic.page [8.208.77.44]
 recv protonmail.com > 250-SIZE 52428800
 recv protonmail.com > 250-8BITMIME
@@ -111,10 +112,10 @@ recv protonmail.com > 250-STARTTLS
 recv protonmail.com > 250-PRDR
 recv protonmail.com > 250 HELP
 send protonmail.com > STARTTLS
-recv protonmail.com > 
+recv protonmail.com >
 recv protonmail.com > 220 TLS go ahead
 send protonmail.com > EHLO akashic.page
-recv protonmail.com > 
+recv protonmail.com >
 recv protonmail.com > 250-mail.smtp2go.com Hello akashic.page [8.208.77.44]
 recv protonmail.com > 250-SIZE 52428800
 recv protonmail.com > 250-8BITMIME
@@ -125,13 +126,13 @@ recv protonmail.com > 250-CHUNKING
 recv protonmail.com > 250-PRDR
 recv protonmail.com > 250 HELP
 send protonmail.com > MAIL FROM:<no-reply@akashic.page>
-recv protonmail.com > 
+recv protonmail.com >
 recv protonmail.com > 250 OK
 send protonmail.com > RCPT TO:<artdecocode@protonmail.com>
-recv protonmail.com > 
+recv protonmail.com >
 recv protonmail.com > 250 Accepted <artdecocode@protonmail.com>
 send protonmail.com > DATA
-recv protonmail.com > 
+recv protonmail.com >
 recv protonmail.com > 354 Enter message, ending with "." on a line by itself
 send protonmail.com > Subject: Hello World
 From: Akashic <no-reply@akashic.page>
@@ -153,12 +154,12 @@ Content-Type: text/plain; charset=utf-8
 text
 
 ------e07b67289b0d805a68a96f108df443e8--
-send protonmail.com > 
+send protonmail.com >
 send protonmail.com > .
-recv protonmail.com > 
+recv protonmail.com >
 recv protonmail.com > 250 OK id=1iu0go-4Xa8vO-Qa
 send protonmail.com > QUIT
-recv protonmail.com > 
+recv protonmail.com >
 recv protonmail.com > 221 mail.smtp2go.com closing connection
 recv protonmail.com >
 ```

@@ -10,7 +10,7 @@ export function getHost(email) {
 /**
  * Groups by domain.
  * @param {!Array<string>} recipients
- * @return {Object<string, !Array<string>}
+ * @return {Object<string, !Array<string>>}
  */
 export function groupRecipients(recipients) {
   const groups = recipients.reduce((acc, current) => {
@@ -36,7 +36,7 @@ export async function connectMx(domain, {
       data = [{ exchange: smtpHost }]
     } else {
       data = /** @type {!Array<!dns.MxRecord>} */ (await makePromise(resolveMx, domain))
-      data.sort((a, b) => a.priority > b.priority)
+      data.sort((a, b) => a.priority - b.priority)
       logger.debug('mx resolved: ', data)
     }
     if (!data || !data.length)
@@ -105,10 +105,10 @@ export function getAddresses(addresses) {
 
 
 /**
- * @suppress {nonStandardJsDoc}
+ * @suppress {nonStandardJsDocs}
  * @typedef {import('dns').MxRecord} dns.MxRecord
  */
 /**
- * @suppress {nonStandardJsDoc}
+ * @suppress {nonStandardJsDocs}
  * @typedef {import('net').Socket} net.Socket
  */

@@ -98,19 +98,19 @@ function buildDkimHeader(headers, dkim, bodyHash) {
   // == Hashes the header
   const signature = hashSignature(headerForSign, dkim.privateKey)
   // == Appends the signature to the header
-  header[header.length - 1] = `b=${signature}`
+  header.push(`b=${signature}`)
   // == Makes the header readable
   let result = 'DKIM-Signature: '
   let count = 0
-  for (let i in header) {
+  header.forEach((h, i) => {
     if (count >= 2) {
-      result += `${header[i]};\r\n${i < header.length ? '\t' : ''}`
+      result += `${h};\r\n${i < header.length ? '\t' : ''}`
       count = 0
     } else {
-      result += `${header[i]}; `
+      result += `${h}; `
       count++
     }
-  }
+  })
   return result
 }
 

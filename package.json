@@ -9,7 +9,7 @@
     "test": "yarn t test/spec test/mask",
     "spec": "yarn t test/spec",
     "mask": "yarn t test/mask",
-    "lib": "depack src/depack.js -o compile/email.js -a -c --source_map_include_content",
+    "lib": "depack src/depack.js -o compile/email.js -a -c --source_map_include_content -s",
     "test-compile": "ALAMODE_ENV=test-compile yarn test",
     "lint": "eslint .",
     "doc": "doc -o README.md -n _email -a -d",
@@ -41,7 +41,7 @@
   "bugs": {
     "url": "https://github.com/artdecocode/email/issues"
   },
-  "homepage": "https://github.com/artdecocode/email#readme",
+  "homepage": "https://www.artd.eco",
   "devDependencies": {
     "@demimonde/dotenv": "^1.1.0",
     "alamode": "^3.3.0",
