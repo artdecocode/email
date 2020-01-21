@@ -89,7 +89,6 @@ export async  function sendToSMTP(domain, host, from, recipients, body, {
 
             sock = connect({
               socket: sock,
-              host: sock['_host'],
               rejectUnauthorized,
             }, () => {
               sock.on('data', onData)
@@ -163,6 +162,6 @@ export async  function sendToSMTP(domain, host, from, recipients, body, {
   } finally {
     sock.removeAllListeners('data')
     sock.end()
-    if (original) original.end()
+    // if (original) original.end()
   }
 }
