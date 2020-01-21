@@ -1,7 +1,7 @@
-import myNewPackage from '../src'
+import email from '../src'
 
 (async () => {
-  const res = await myNewPackage({
+  const res = await email({
     text: 'example',
   })
   console.log(res)

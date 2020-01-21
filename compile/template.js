@@ -1,12 +1,12 @@
-const { _myNewPackage } = require('./mnp')
+const { _email } = require('./email')
 
 /**
- * @methodType {_myNewPackage.myNewPackage}
+ * @methodType {_email.email}
  */
-function myNewPackage(config) {
-  return _myNewPackage(config)
+function email(config) {
+  return _email(config)
 }
 
-module.exports = myNewPackage
+module.exports = email
 
 /* typal types/index.xml namespace */

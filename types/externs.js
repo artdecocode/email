@@ -5,19 +5,19 @@
 
 /* typal types/index.xml externs */
 /** @const */
-var _myNewPackage = {}
+var _email = {}
 /**
  * Options for the program.
  * @record
  */
-_myNewPackage.Config
+_email.Config
 /**
  * A boolean option. Default `true`.
  * @type {boolean|undefined}
  */
-_myNewPackage.Config.prototype.shouldRun
+_email.Config.prototype.shouldRun
 /**
  * A text to return.
  * @type {string|undefined}
  */
-_myNewPackage.Config.prototype.text
+_email.Config.prototype.text

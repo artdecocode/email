@@ -1,11 +1,11 @@
-# my-new-package
+# @artdeco/email
 
-%NPM: my-new-package%
+%NPM: @artdeco/email%
 
-`my-new-package` is {{ description }}
+`@artdeco/email` is Send e-mails by direct connection to recepient's SMPT server.
 
 ```sh
-yarn add my-new-package
+yarn add @artdeco/email
 ```
 
 ## Table Of Contents

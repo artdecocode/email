@@ -1,6 +1,6 @@
-<types namespace="_myNewPackage">
-  <method name="myNewPackage" async return="string">
-    <arg type="!_myNewPackage.Config" name="config">The config.</arg>
-    {{ description }}
+<types namespace="_email">
+  <method name="email" async return="string">
+    <arg type="!_email.Config" name="config">The config.</arg>
+    Send e-mails by direct connection to recepient's SMPT server.
   </method>
 </types>

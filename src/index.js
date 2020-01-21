@@ -1,21 +1,21 @@
 import { c } from 'erte'
 
 /**
- * {{ description }}
- * @param {!_myNewPackage.Config} [config] Options for the program.
+ * Send e-mails by direct connection to recepient's SMPT server.
+ * @param {!_email.Config} [config] Options for the program.
  * @param {boolean} [config.shouldRun=true] A boolean option. Default `true`.
  * @param {string} [config.text] A text to return.
  */
-export default async function myNewPackage(config = {}) {
+export default async function email(config = {}) {
   const {
     shouldRun = true,
     text = '',
   } = config
   if (!shouldRun) return
-  console.log('my-new-package called with %s', c(text, 'yellow'))
+  console.log('@artdeco/email called with %s', c(text, 'yellow'))
   return text
 }
 
 /**
- * @typedef {import('../types').Config} _myNewPackage.Config
+ * @typedef {import('..').Config} _email.Config
  */

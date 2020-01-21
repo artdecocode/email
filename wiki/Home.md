@@ -1,1 +1,1 @@
-{{ description }}
+Send e-mails by direct connection to recepient's SMPT server.
