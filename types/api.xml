@@ -4,5 +4,6 @@
     <arg type="{ html: string, text: string }" name="data">The data.</arg>
     <arg type="!_email.Config" name="config">The config.</arg>
     Send e-mails by direct connection to recipient's SMTP server.
+    You will most probably want to use a relay SMTP server, as most cloud server providers (Azure, Alibaba) block port 25 for direct connections.
   </method>
 </types>

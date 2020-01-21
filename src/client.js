@@ -69,7 +69,7 @@ export async  function sendToSMTP(domain, host, from, recipients, body, {
       sock.on('data', onData)
 
       sock.on('error', (err) => {
-        logger.error('fail to connect %s', domain)
+        logger.error('Fail to connect %s', domain)
         j(err)
       })
 
@@ -142,7 +142,6 @@ export async  function sendToSMTP(domain, host, from, recipients, body, {
           break
 
         case 354: // start input end with . (dot)
-          logger.info('Sending mail %s', body)
           w(body)
           w('')
           w('.')

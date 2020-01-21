@@ -12,7 +12,7 @@ import email from '@artdeco/email'
 
 <typedef>types/index.xml</typedef>
 
-%EXAMPLE: example, ../src => @artdeco/email%
-%FORK example%
+%EXAMPLE: example/fn, ../src => @artdeco/email%
+<!-- %FORK example% -->
 
 %~%

@@ -3,6 +3,9 @@
     <prop type="!_email.Dkim" name="dkim" opt>
       DKIM configuration for signing emails.
     </prop>
+    <prop boolean name="silent" default="false">
+      Disable printing to console.
+    </prop>
     <prop string name="smtpHost" opt>
       SMTP host to connect to (e.g., an email relay service).
     </prop>
@@ -18,26 +21,20 @@
     <prop string name="to">
       The TO field.
     </prop>
-    <prop string name="cc" opt>
-      Carbon copy.
+    <prop type="string|!Array<string>" name="cc" opt>
+      Carbon copy the message to these recipients.
     </prop>
     <prop string name="bcc" opt>
-      Blind carbon copy.
+      Blind carbon copy (without revealing) to these recipients.
     </prop>
-    <prop string name="replyTo" opt>
+    <prop1 string name="replyTo" opt>
       Reply to.
-    </prop>
-    <prop string name="returnTo" opt>
+    </prop1>
+    <prop1 string name="returnTo" opt>
       Return to.
-    </prop>
+    </prop1>
     <prop string name="subject" opt>
       The email subject.
-    </prop>
-    <prop string name="type" default="text/plain">
-      The type of the email, e.g., `text/html`.
-    </prop>
-    <prop string name="type" default="text/plain">
-      The type of the email, e.g., `text/html`.
     </prop>
   </record>
 
@@ -49,7 +46,7 @@
       The selector.
     </prop>
     <prop string name="domain">
-      The domain.
+      The domain. This will be deducted from your email host from the `mail.to` field.
     </prop>
   </record>
 </types>

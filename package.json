@@ -30,6 +30,7 @@
     "type": "git",
     "url": "git://github.com/artdecocode/email.git"
   },
+  "typedefs": "typedefs.json",
   "keywords": [
     "email",
     "smtp",

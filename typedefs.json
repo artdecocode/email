@@ -1,0 +1,18 @@
+{
+  "_email.email": {
+    "link": "https://github.com/artdecocode/email#async-emailmail-maildata--html-string-text-string-config-config-void",
+    "description": "Send e-mails by direct connection to recipient's SMTP server.\nYou will most probably want to use a relay SMTP server, as most cloud server providers (Azure, Alibaba) block port 25 for direct connections."
+  },
+  "_email.Config": {
+    "link": "https://github.com/artdecocode/email#type-config",
+    "description": "Options for the program."
+  },
+  "_email.Mail": {
+    "link": "https://github.com/artdecocode/email#type-mail",
+    "description": "The mail object."
+  },
+  "_email.Dkim": {
+    "link": "https://github.com/artdecocode/email#type-dkim",
+    "description": "DKIM information"
+  }
+}

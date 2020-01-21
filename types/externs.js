@@ -17,6 +17,11 @@ _email.Config
  */
 _email.Config.prototype.dkim
 /**
+ * Disable printing to console. Default `false`.
+ * @type {boolean|undefined}
+ */
+_email.Config.prototype.silent
+/**
  * SMTP host to connect to (e.g., an email relay service).
  * @type {string|undefined}
  */
@@ -42,40 +47,20 @@ _email.Mail.prototype.from
  */
 _email.Mail.prototype.to
 /**
- * Carbon copy.
- * @type {string|undefined}
+ * Carbon copy the message to these recipients.
+ * @type {(string|!Array<string>)|undefined}
  */
 _email.Mail.prototype.cc
 /**
- * Blind carbon copy.
+ * Blind carbon copy (without revealing) to these recipients.
  * @type {string|undefined}
  */
 _email.Mail.prototype.bcc
-/**
- * Reply to.
- * @type {string|undefined}
- */
-_email.Mail.prototype.replyTo
-/**
- * Return to.
- * @type {string|undefined}
- */
-_email.Mail.prototype.returnTo
 /**
  * The email subject.
  * @type {string|undefined}
  */
 _email.Mail.prototype.subject
-/**
- * The type of the email, e.g., `text/html`. Default `text/plain`.
- * @type {string|undefined}
- */
-_email.Mail.prototype.type
-/**
- * The type of the email, e.g., `text/html`. Default `text/plain`.
- * @type {string|undefined}
- */
-_email.Mail.prototype.type
 /**
  * DKIM information
  * @record
@@ -92,7 +77,7 @@ _email.Dkim.prototype.privateKey
  */
 _email.Dkim.prototype.keySelector
 /**
- * The domain.
+ * The domain. This will be deducted from your email host from the `mail.to` field.
  * @type {string}
  */
 _email.Dkim.prototype.domain
