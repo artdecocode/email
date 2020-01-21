@@ -1,1 +1,1 @@
-Send e-mails by direct connection to recepient's SMPT server.
+Send e-mails by direct connection to recipient's SMTP server.

@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/@artdeco/email.svg)](https://www.npmjs.com/package/@artdeco/email)
 
-`@artdeco/email` is Send e-mails by direct connection to recepient's SMPT server.
+`@artdeco/email` is Send e-mails by direct connection to recipient's SMTP server.
 
 ```sh
 yarn add @artdeco/email
@@ -34,7 +34,7 @@ import email from '@artdeco/email'
 </a></p>
 
 ## <code>async <ins>email</ins>(</code><sub><br/>&nbsp;&nbsp;`config: !Config,`<br/></sub><code>): <i>string</i></code>
-Send e-mails by direct connection to recepient's SMPT server.
+Send e-mails by direct connection to recipient's SMTP server.
 
  - <kbd><strong>config*</strong></kbd> <em><code><a href="#type-config" title="Options for the program.">!Config</a></code></em>: The config.
 

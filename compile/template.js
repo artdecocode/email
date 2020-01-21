@@ -3,8 +3,8 @@ const { _email } = require('./email')
 /**
  * @methodType {_email.email}
  */
-function email(config) {
-  return _email(config)
+function email(mail, data, config) {
+  return _email(mail, data, config)
 }
 
 module.exports = email

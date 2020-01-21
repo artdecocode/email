@@ -1,6 +1,8 @@
 <types namespace="_email">
-  <method name="email" async return="string">
+  <method name="email" async>
+    <arg type="!_email.Mail" name="mail">The mail to send.</arg>
+    <arg type="{ html: string, text: string }" name="data">The data.</arg>
     <arg type="!_email.Config" name="config">The config.</arg>
-    Send e-mails by direct connection to recepient's SMPT server.
+    Send e-mails by direct connection to recipient's SMTP server.
   </method>
 </types>

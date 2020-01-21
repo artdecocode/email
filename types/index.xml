@@ -1,10 +1,55 @@
 <types namespace="_email">
-  <type record name="Config" desc="Options for the program.">
-    <prop boolean name="shouldRun" default="true">
-      A boolean option.
+  <record name="Config" desc="Options for the program.">
+    <prop type="!_email.Dkim" name="dkim" opt>
+      DKIM configuration for signing emails.
     </prop>
-    <prop string name="text" opt>
-      A text to return.
+    <prop string name="smtpHost" opt>
+      SMTP host to connect to (e.g., an email relay service).
     </prop>
-  </type>
+    <prop string name="smtpHost" opt>
+      The port to connect to SMTP server.
+    </prop>
+  </record>
+
+  <record name="Mail" desc="The mail object.">
+    <prop string name="from">
+      The FROM field.
+    </prop>
+    <prop string name="to">
+      The TO field.
+    </prop>
+    <prop string name="cc" opt>
+      Carbon copy.
+    </prop>
+    <prop string name="bcc" opt>
+      Blind carbon copy.
+    </prop>
+    <prop string name="replyTo" opt>
+      Reply to.
+    </prop>
+    <prop string name="returnTo" opt>
+      Return to.
+    </prop>
+    <prop string name="subject" opt>
+      The email subject.
+    </prop>
+    <prop string name="type" default="text/plain">
+      The type of the email, e.g., `text/html`.
+    </prop>
+    <prop string name="type" default="text/plain">
+      The type of the email, e.g., `text/html`.
+    </prop>
+  </record>
+
+  <record name="Dkim" desc="DKIM information">
+    <prop string name="privateKey">
+      The private key.
+    </prop>
+    <prop string name="keySelector" default="dkim">
+      The selector.
+    </prop>
+    <prop string name="domain">
+      The domain.
+    </prop>
+  </record>
 </types>

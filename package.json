@@ -1,7 +1,7 @@
 {
   "name": "@artdeco/email",
   "version": "0.0.0-pre",
-  "description": "Send e-mails by direct connection to recepient's SMPT server.",
+  "description": "Send e-mails by direct connection to recipient's SMTP server.",
   "main": "compile/index.js",
   "module": "src/index.js",
   "scripts": {
@@ -42,11 +42,13 @@
   },
   "homepage": "https://github.com/artdecocode/email#readme",
   "devDependencies": {
-    "alamode": "^3.2.0",
+    "@demimonde/dotenv": "^1.1.0",
+    "alamode": "^3.3.0",
     "depack": "^1.0.1",
-    "documentary": "^1.34.1",
+    "documentary": "^1.35.9",
     "erte": "^1.2.0",
     "eslint-config-artdeco": "1.0.1",
+    "makepromise": "^3.1.0",
     "yarn-s": "1.2.1",
     "zoroaster": "^4.1.2"
   }
