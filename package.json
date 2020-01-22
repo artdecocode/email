@@ -1,6 +1,6 @@
 {
   "name": "@artdeco/email",
-  "version": "0.0.0-pre",
+  "version": "1.0.0",
   "description": "Send e-mails by direct connection to recipient's SMTP server.",
   "main": "compile/index.js",
   "module": "src/index.js",
