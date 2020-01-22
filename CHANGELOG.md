@@ -1,3 +1,9 @@
+## 22 January 2020
+
+### [1.0.0](https://github.com/artdecocode/email/compare/v0.0.0-pre...v1.0.0)
+
+- [package] Publish version 1 of the package.
+
 ## 21 January 2020
 
 ### 0.0.0-pre
