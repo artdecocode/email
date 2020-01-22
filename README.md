@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/%40artdeco%2Femail.svg)](https://www.npmjs.com/package/@artdeco/email)
 
-`@artdeco/email` is Send e-mails by direct connection to recipient's SMTP server.
+`@artdeco/email` Sends e-mails by direct connection to recipient's SMTP server with TLS upgrade support. You can use this for relay services also, e.g., on https://www.smtp2go.com.
 
 ```sh
 yarn add @artdeco/email
@@ -169,6 +169,8 @@ recv protonmail.com >
 </a></p>
 
 ## Copyright & License
+
+- [SMTP commands reference](https://www.samlogic.net/articles/smtp-commands-reference.htm)
 
 GNU Affero General Public License v3.0
 
