@@ -191,6 +191,9 @@ recv protonmail.com >
 
 GNU Affero General Public License v3.0
 
+Original work on the SMTP client from [node-sendmail](https://github.com/guileen/node-sendmail) by GreenPioneer, NGTmeaty and others under MIT license. Email formatting and DKIM support from [fannst-nodemailer](http://npmjs.com/package/fannst-nodemailer) by Luke Rieff under ISC license.
+
+
 <table>
   <tr>
     <td><img src="https://avatars3.githubusercontent.com/u/38815725?v=4&amp;s=100" alt="artdecocode"></td>

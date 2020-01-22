@@ -1,6 +1,10 @@
 import { connect } from 'tls'
 import { connectMx } from './lib'
 
+/**
+ * @license {MIT} https://github.com/guileen/node-sendmail/
+ */
+
 const CRLF = '\r\n'
 
 /**
