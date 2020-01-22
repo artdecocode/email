@@ -32,6 +32,7 @@ async function $email(mail, { html, text }, options = {}) {
     smtpHost = -1,
     rejectUnauthorized,
     autoEHLO,
+    user, pass,
   } = options
 
   const recipients = []
@@ -61,6 +62,7 @@ async function $email(mail, { html, text }, options = {}) {
         logger,
         rejectUnauthorized, autoEHLO,
         devHost, devPort, smtpHost, smtpPort,
+        user, pass,
       })
       results[domain] = res
     } catch (err) {

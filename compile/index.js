@@ -15,6 +15,8 @@ You will most probably want to use a relay SMTP server, as most cloud server pro
  * @param {boolean} [config.silent=false] Disable printing to console. Default `false`.
  * @param {string} [config.smtpHost] SMTP host to connect to (e.g., an email relay service).
  * @param {string} [config.smtpPort] The port to connect to SMTP server.
+ * @param {string} [config.user] The username to use for login.
+ * @param {string} [config.pass] The password for login.
  * @return {Promise}
  */
 function email(mail, data, config) {
@@ -38,6 +40,8 @@ module.exports = email
  * @prop {boolean} [silent=false] Disable printing to console. Default `false`.
  * @prop {string} [smtpHost] SMTP host to connect to (e.g., an email relay service).
  * @prop {string} [smtpPort] The port to connect to SMTP server.
+ * @prop {string} [user] The username to use for login.
+ * @prop {string} [pass] The password for login.
  * @typedef {_email.Dkim} Dkim `＠record` DKIM information for signing messages. If you use a relay, this will not be required.
  * @typedef {Object} _email.Dkim `＠record` DKIM information for signing messages. If you use a relay, this will not be required.
  * @prop {string} privateKey The private key.

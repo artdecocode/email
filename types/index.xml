@@ -36,6 +36,12 @@
     <prop string name="smtpPort" opt>
       The port to connect to SMTP server.
     </prop>
+    <prop string name="user" opt>
+      The username to use for login.
+    </prop>
+    <prop string name="pass" opt>
+      The password for login.
+    </prop>
   </record>
 
   <record name="Dkim" desc="DKIM information for signing messages. If you use a relay, this will not be required.">

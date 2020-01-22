@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/%40artdeco%2Femail.svg)](https://www.npmjs.com/package/@artdeco/email)
 
-`@artdeco/email` Sends e-mails by direct connection to recipient's SMTP server with TLS upgrade support. You can use this for relay services also, e.g., on https://www.smtp2go.com.
+`@artdeco/email` Sends e-mails by direct connection to recipient's SMTP server with authorisation and TLS upgrade support to encrypt messages. You can use this for relay services also, such as https://www.smtp2go.com.
 
 ```sh
 yarn add @artdeco/email
@@ -11,6 +11,7 @@ yarn add @artdeco/email
 ## Table Of Contents
 
 - [Table Of Contents](#table-of-contents)
+- [How Does It Work](#how-does-it-work)
 - [API](#api)
 - [`async email(mail: !Mail, data: { html: string, text: string }, config: !Config): void`](#async-emailmail-maildata--html-string-text-string-config-config-void)
   * [`Mail`](#type-mail)
@@ -22,6 +23,18 @@ yarn add @artdeco/email
   <img src="/.documentary/section-breaks/0.svg?sanitize=true">
 </a></p>
 
+## How Does It Work
+
+You don't need to operate your own SMTP server to send messages: given an email address, you can resolve the MX server of the domain via DNS lookup, and connect to it directly. This package includes an SMTP client that will establish a socket connection, perform TLS upgrade, and authenticate users when necessary (see the bottom of the page for SMTP protocol commands link). After the connection is established, you can just send formatted message.
+
+However, due to spam, most hosting providers such as Azure, _etc_ will block port 25 so you won't be able to do that. That's why there are many online services that allow to send messages via so-called relay services via additional ports like 2525. They usually provide an HTTP API as well, but this package has a standard SMTP client. A relay business-model is to maintain high reputation of their servers so that all messages will be delivered. Although there's only a limited number of free messages that can be sent per month, there's pretty much no alternative nowadays for production transactional emails therefore you just have to go with that.
+
+On the other hand, you might be able to use [Gmail's SMTP server](https://kinsta.com/knowledgebase/free-smtp-server/) if you are a Google Apps customer.
+
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/1.svg?sanitize=true">
+</a></p>
+
 ## API
 
 The package is available by importing its default function:
@@ -31,7 +44,7 @@ import email from '@artdeco/email'
 ```
 
 <p align="center"><a href="#table-of-contents">
-  <img src="/.documentary/section-breaks/1.svg?sanitize=true">
+  <img src="/.documentary/section-breaks/2.svg?sanitize=true">
 </a></p>
 
 ## <code>async <ins>email</ins>(</code><sub><br/>&nbsp;&nbsp;`mail: !Mail,`<br/>&nbsp;&nbsp;`data: { html: string, text: string },`<br/>&nbsp;&nbsp;`config: !Config,`<br/></sub><code>): <i>void</i></code>
@@ -63,6 +76,8 @@ __<a name="type-config">`Config`</a>__: Options for the program.
 | silent   | <em>boolean</em>                                                                                                                      | Disable printing to console.                            | `false` |
 | smtpHost | <em>string</em>                                                                                                                       | SMTP host to connect to (e.g., an email relay service). | -       |
 | smtpPort | <em>string</em>                                                                                                                       | The port to connect to SMTP server.                     | -       |
+| user     | <em>string</em>                                                                                                                       | The username to use for login.                          | -       |
+| pass     | <em>string</em>                                                                                                                       | The password for login.                                 | -       |
 
 
 __<a name="type-dkim">`Dkim`</a>__: DKIM information for signing messages. If you use a relay, this will not be required.
@@ -92,6 +107,8 @@ export default async () => {
   }, {
     smtpHost: 'mail.smtp2go.com',
     smtpPort: 2525,
+    user: process.env.SMTP2GO_USER,
+    pass: process.env.SMTP2GO_PASSWORD,
   })
   return mail
 }
@@ -165,7 +182,7 @@ recv protonmail.com >
 ```
 
 <p align="center"><a href="#table-of-contents">
-  <img src="/.documentary/section-breaks/2.svg?sanitize=true">
+  <img src="/.documentary/section-breaks/3.svg?sanitize=true">
 </a></p>
 
 ## Copyright & License

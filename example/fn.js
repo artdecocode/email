@@ -13,6 +13,8 @@ export default async () => {
   }, {
     smtpHost: 'mail.smtp2go.com',
     smtpPort: 2525,
+    user: process.env.SMTP2GO_USER,
+    pass: process.env.SMTP2GO_PASSWORD,
   })
   return mail
 }

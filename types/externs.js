@@ -62,6 +62,16 @@ _email.Config.prototype.smtpHost
  */
 _email.Config.prototype.smtpPort
 /**
+ * The username to use for login.
+ * @type {string|undefined}
+ */
+_email.Config.prototype.user
+/**
+ * The password for login.
+ * @type {string|undefined}
+ */
+_email.Config.prototype.pass
+/**
  * DKIM information for signing messages. If you use a relay, this will not be required.
  * @record
  */

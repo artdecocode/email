@@ -12,6 +12,7 @@ const CRLF = '\r\n'
  */
 export async  function sendToSMTP(domain, host, from, recipients, body, {
   logger, rejectUnauthorized, autoEHLO, devHost, devPort, smtpHost, smtpPort,
+  user, pass,
 }) {
   let sock = await connectMx(domain, {
     logger, devHost, devPort, smtpHost, smtpPort,
@@ -26,28 +27,24 @@ export async  function sendToSMTP(domain, host, from, recipients, body, {
 
   let data = '', step = 0, loginStep = 0, msg = ''
   const queue = [
+    ...((user && pass) ? ['AUTH LOGIN'] : []),
     `MAIL FROM:<${from}>`,
     ...recipients.map((rcpt) => `RCPT TO:<${rcpt}>`),
     'DATA',
     'QUIT',
     '',
   ]
-  const login = []
+  const login = user && pass ? [
+    new Buffer(user).toString('base64'),
+    new Buffer(pass).toString('base64'),
+  ] : []
 
   let cmd
   let upgraded = false
 
-  /*
-    if(mail.user && mail.pass){
-      queue.push('AUTH LOGIN');
-      login.push(new Buffer(mail.user).toString("base64"));
-      login.push(new Buffer(mail.pass).toString("base64"));
-    }
-    */
-
   let original
   try {
-    await new Promise((r, j) => {
+    return await new Promise((r, j) => {
       const onData = (chunk) => {
         data += chunk
         const parts = data.split(CRLF)
@@ -131,26 +128,29 @@ export async  function sendToSMTP(domain, host, from, recipients, body, {
             break
           }
         // eslint-disable-next-line no-fallthrough
-        case 251: // foward
+        case 251: { // foward
           if (step == queue.length - 1) {
             logger.info('OK: %s %s', code, message)
             r(message)
           }
-          w(queue[step])
+          const command = queue[step]
+          w(command)
           step++
           break
-
+        }
         case 354: // start input end with . (dot)
           w(body)
           w('')
           w('.')
           break
 
-        case 334: // input login
-          w(login[loginStep])
+        case 334: {
+          // input login
+          const loginCommand = login[loginStep]
+          w(loginCommand)
           loginStep++
           break
-
+        }
         default:
           if (code >= 400) {
             logger.warn('SMTP responds error code %s', code)
@@ -162,6 +162,5 @@ export async  function sendToSMTP(domain, host, from, recipients, body, {
   } finally {
     sock.removeAllListeners('data')
     sock.end()
-    // if (original) original.end()
   }
 }
